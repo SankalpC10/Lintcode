@@ -1,0 +1,46 @@
+68 · Yang Hui Triangle
+Algorithms
+Easy
+Description
+Given an integer n, return the first n-line Yang Hui triangle.
+
+1.0<=n<=20
+2.Yang Hui’s Triangle also called Pascal's triangle. --(Wikipedia)
+
+Example
+Example 1:
+
+Input : n = 4
+Output :  
+[
+ [1]
+ [1,1]
+ [1,2,1]
+ [1,3,3,1]
+]
+
+class Solution {
+public:
+    /**
+     * @param n: a Integer
+     * @return: the first n-line Yang Hui's triangle
+     */
+    vector<vector<int>> calcYangHuisTriangle(int n) {
+        vector<vector<int>>res;
+        if(n == 0) {
+            return res;
+        }
+        for(int i = 0; i < n; i++) {
+            vector<int> temp;
+            temp.push_back(1);
+            for(int j = 1; j < i; j++) {
+                temp.push_back(res[i - 1][j - 1] + res[i - 1][j]);
+            }
+            if(i > 0){
+                temp.push_back(1);
+            }
+            res.push_back(temp);
+        }
+        return res;
+    }
+};
